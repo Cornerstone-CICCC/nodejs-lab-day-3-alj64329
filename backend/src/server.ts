@@ -22,7 +22,7 @@ app.use('/api/chat', chatRouter);
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '', // Your frontend url here (Astro, React, vanilla HTML)
+    origin: "http://127.0.0.1:5500", // Your frontend url here (Astro, React, vanilla HTML)
     methods: ["GET", "POST"]
   },
 });
