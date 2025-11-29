@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Chokokutai&display=swap");
+
+body{
+    font-family: "Chokokutai", system-ui;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: fit-content;
+    gap: 1rem;
+}
+
+#btn-join{
+    font-family: "Chokokutai", system-ui;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 0.5rem 0;
+    border-radius: 15px;
+}
+
+.chat-input{
+    display: none;
+}
+
+.chat-input button{
+    font-family: "Chokokutai", system-ui;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+}
+.chat-input.active{
+    display: block;
+}
+
+ul li{
+    list-style: none;
+}
+
+.username-span{
+    padding-right: 1rem;
+}
