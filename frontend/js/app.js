@@ -11,7 +11,7 @@ const socket = io("http://localhost:3500") // backend url
 let currentUsername = null 
 let currentRoom = null
 
-btnJoin.addEventListener('click',()=>{
+btnJoin.addEventListener('click',async()=>{
     const username = usernameInput.value
     const selectRoom = roomSelect.value
 
@@ -19,20 +19,23 @@ btnJoin.addEventListener('click',()=>{
         socket.emit("leaveRoom",{
             room:currentRoom
         })
+        chatForm.classList.remove('active')
         messages.innerHTML=""
     }
     currentUsername = usernameInput.value.trim()
     currentRoom= selectRoom
+
+    await renderChatInRoom(currentRoom)
 
     socket.emit('joinRoom',{
         room:currentRoom, 
         username
     })
     usernameInput.disabled=true
-    roomSelect.disabled = true
-
-    renderChatInRoom(currentRoom)
+    chatForm.classList.add('active')
+    // renderChatInRoom(currentRoom)
 })
+
 chatForm.addEventListener('submit', (e)=>{
     e.preventDefault()
     const message = chatInput.value
@@ -47,29 +50,18 @@ chatForm.addEventListener('submit', (e)=>{
         room:currentRoom,
     })
 
-
-    // if(!currentUsername){
-    //     currentUsername = usernameInput.value.trim()
-    //     if(!usernameInput.value.trim()){
-    //         alert("Enter username first")
-    //         return
-    //     }
-    //     //socket.emit('join',currentUsername)
-    //     renderChat();
-    //     usernameInput.disabled=true
-    // }
-
-    // socket.emit('sendMessage',{
-    //     username:currentUsername,
-    //     message:chatInput.value
-    // })
     chatInput.value=""
 })
 
 socket.on('chatRoom', (data)=>{
+
+    if(!data.createdAt&&data.username.toLowerCase()!=="system") {
+        return
+    }
+
     const li = document.createElement('li')
     li.innerHTML = `
-    <span>${data.username}:</span>
+    <span class="username-span">${data.username}:</span>
     ${data.message}`
 
     messages.appendChild(li)
@@ -103,7 +95,7 @@ const writeChat=(data)=>{
     data.forEach(u => {
         const li = document.createElement('li')
         li.innerHTML = `
-        <span>${u.username}:</span>
+        <span class="username-span">${u.username}:</span>
         ${u.message}`
         messages.appendChild(li)
     });

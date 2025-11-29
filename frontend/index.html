@@ -5,26 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/styel.css">
 </head>
 <body>
   <h1>Chat</h1>
-
-    <label>
-      Select Room:
-      <select id="room-select">
-        <option value="room-1">Room 1</option>
-        <option value="room-2">Room 2</option>
-        <option value="room-3">Room 3</option>
-      </select>
-    </label>
-    
-    <input type="text" id="username" placeholder="Enter username...">
-    <button id="btn-join">Join Room</button>
-    
-  <form id="chat-form">
-    <input type="text" id="chat-message" placeholder="Enter text...">
-    <button id="send">Send</button>
-  </form>
+  <div class="input-container">
+      <div class="box">
+        <label>
+          Select Room:
+          <select id="room-select">
+            <option value="room-1">Room 1</option>
+            <option value="room-2">Room 2</option>
+            <option value="room-3">Room 3</option>
+          </select>
+        </label>
+        
+        <input type="text" id="username" placeholder="Enter username...">
+        <button id="btn-join">Join Room</button>
+      </div>
+      
+    <form id="chat-form" class="chat-input">
+      <input type="text" id="chat-message" placeholder="Enter text...">
+      <button id="send">Send</button>
+    </form>
+  </div>
 
   <section style="display: flex; gap: 2rem;">
     <ul id="messages" style="flex: 1;">

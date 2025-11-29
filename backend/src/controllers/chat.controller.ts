@@ -12,7 +12,6 @@ const getAllChats = async (req: Request, res: Response) => {
 };
 
 const getMessagesByRoom = async(req:Request<{roomNum:string}>, res:Response)=>{
-  console.log(req.params.roomNum)
   try{
     const chats = await Chat.find({
       room: `room-${req.params.roomNum}`

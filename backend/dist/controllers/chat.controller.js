@@ -21,7 +21,6 @@ const getAllChats = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 const getMessagesByRoom = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.params.roomNum);
     try {
         const chats = yield chat_model_1.Chat.find({
             room: `room-${req.params.roomNum}`
